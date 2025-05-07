@@ -284,7 +284,7 @@ firebase = pyrebase.initialize_app(config)
 import google.auth
 from google.oauth2 import service_account
 
-firebase_cred_json = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS")
+firebase_cred_json = os.environ.get("FIREBASE_CREDENTIAL_JSON")
 if not firebase_cred_json:
     raise ValueError("FIREBASE_CREDENTIAL_JSON 環境變數未設定")
 
