@@ -1,94 +1,102 @@
-<style>
-  body {
-    margin: 0;
-    background: url("{{ url_for('static', filename='img/tech_ev_bg.jpg') }}") no-repeat center top;
-    background-size: cover;
-    background-color: black;
-    background-attachment: fixed;
-    font-family: 'Poppins', sans-serif;
-    color: #fff;
-    min-height: 100vh;
-    overflow-y: auto;
-  }
+<!DOCTYPE html>
+<html>
+<head>
+  <title>登入</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background: url("{{ url_for('static', filename='img/tech_ev_bg.jpg') }}") no-repeat center top;
+      background-size: contain;
+      background-color: black;
+      background-attachment: fixed;
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      min-height: 100vh;
+      overflow-y: auto;
+    }
 
-  .container {
-    min-height: 100vh;
-    display: flex;
-    align-items: flex-start; /* 從上方對齊 */
-    justify-content: center;
-    padding-top: 40px; /* 上方多一點空間 */
-    padding-bottom: 40px;
-  }
-
-  .login-wrapper {
-    background: rgba(0, 0, 0, 0.7);
-    padding: 1rem 1.2rem; /* 內距縮小一點 */
-    border-radius: 1rem;
-    box-shadow: 0 0 20px rgba(0, 255, 153, 0.5);
-    max-width: 300px;
-    width: 100%;
-  }
-
-  .card-title {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-    color: #00ffcc;
-    text-align: center;
-  }
-
-  .form-control {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: #fff;
-    border: 1px solid #00cc99;
-    font-size: 0.9rem;
-    padding: 0.4rem 0.5rem;
-  }
-
-  .form-control::placeholder {
-    color: #ccc;
-  }
-
-  .btn-primary {
-    background-color: #00cc99;
-    border: none;
-    font-size: 1rem;
-    padding: 0.45rem;
-  }
-
-  .btn-primary:hover {
-    background-color: #00e6aa;
-  }
-
-  .form-label {
-    font-size: 0.8rem;
-    margin-bottom: 0.3rem;
-  }
-
-  .mb-3 {
-    margin-bottom: 0.7rem !important;
-  }
-
-  /* ✅ 手機版 */
-  @media (max-width: 576px) {
     .container {
-      padding-top: 70px;
-      padding-bottom: 70px;
-      align-items: center; /* 手機版置中 */
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 20px;
     }
 
     .login-wrapper {
-      padding: 0.8rem;
-      max-width: 90vw;
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(0, 0, 0, 0.7);
+      padding: 0.6rem;
+      border-radius: 1rem;
+      box-shadow: 0 0 20px rgba(0, 255, 153, 0.5);
+      max-width: 270px;
     }
 
     .card-title {
-      font-size: 1.05rem;
+      font-size: 1.15rem;
+      margin-bottom: 0.6rem;
+      color: #00ffcc;
+      text-align: center;
+    }
+
+    .form-control {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border: 1px solid #00cc99;
+      font-size: 0.82rem;
+      padding: 0.3rem 0.5rem;
+    }
+
+    .form-control::placeholder {
+      color: #ccc;
     }
 
     .btn-primary {
-      font-size: 1rem;
-      padding: 0.4rem;
+      background-color: #00cc99;
+      border: none;
+      font-size: 0.88rem;
+      padding: 0.32rem;
     }
-  }
-</style>
+
+    .btn-primary:hover {
+      background-color: #00e6aa;
+    }
+
+    .form-label {
+      font-size: 0.78rem;
+      margin-bottom: 0.1rem;
+    }
+
+    .mb-3 {
+      margin-bottom: 0.6rem !important;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="col-md-4 mx-auto" style="max-width: 290px;">
+      <div class="login-wrapper">
+        <h3 class="card-title">登入</h3>
+
+        {% if error %}
+        <div class="alert alert-danger" role="alert">
+          {{ error }}
+        </div>
+        {% endif %}
+
+        <form action="/login" method="POST">
+          <div class="mb-3">
+            <label for="phone" class="form-label">手機號碼</label>
+            <input type="text" name="phone" class="form-control" required placeholder="請輸入手機號碼">
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">密碼</label>
+            <input type="password" name="password" class="form-control" required placeholder="請輸入密碼">
+          </div>
+          <button type="submit" class="btn btn-primary w-100">登入</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
