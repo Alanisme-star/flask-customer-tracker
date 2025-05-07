@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>管理顧客帳號</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container mt-5">
+    <h2 class="mb-4">管理顧客帳號</h2>
+
+    {% if message %}
+    <div class="alert alert-info">{{ message }}</div>
+    {% endif %}
+
+    <!-- 新增顧客帳號按鈕 -->
+    <div class="mb-3">
+        <a href="/admin/new_customer" class="btn btn-success">＋ 新增顧客帳號</a>
+    </div>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>手機號碼</th>
+                <th>顧客名稱</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in customers %}
+            <tr>
+                <td>{{ user.phone }}</td>
+                <td>{{ user.name }}</td>
+                <td>
+                    <a href="/admin/edit_customer/{{ user.id }}" class="btn btn-sm btn-primary">編輯</a>
+
+                    <form action="/admin/delete_customer/{{ user.id }}" method="POST" class="d-inline"
+                          onsubmit="return confirm('⚠️ 確定要刪除顧客帳號 {{ user.phone }} 嗎？此動作無法復原')">
+                        <button type="submit" class="btn btn-sm btn-danger ms-2">刪除</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="/admin" class="btn btn-secondary">← 返回後台首頁</a>
+</body>
+</html>

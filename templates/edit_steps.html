@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>編輯固定進度步驟</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      background: url("{{ url_for('static', filename='img/tech_ev_bg2.jpg') }}") no-repeat center center fixed;
+      background-size: cover;
+      color: #ffffff;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .container {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 0 20px rgba(0, 255, 153, 0.5);
+    }
+
+    .table {
+      background-color: rgba(255, 255, 255, 0.05);
+      color: #ffffff;
+    }
+
+    .table thead {
+      background-color: rgba(0, 255, 153, 0.2);
+    }
+
+    .step-icon {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+    }
+
+    .btn-primary {
+      background-color: #00cc99;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background-color: #00e6aa;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-5">
+    <h3 class="mb-4">專案進度管理：{{ project_title }}</h3>
+
+    <form method="POST">
+      <div class="table-responsive">
+        <table class="table table-bordered align-middle text-center">
+          <thead>
+            <tr>
+              <th>步驟</th>
+              <th>圖示</th>
+              <th>步驟名稱</th>
+              <th>完成日期</th>
+              <th>單步耗時（工作天）</th>
+              <th>累積天數</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for step in steps %}
+            <tr>
+              <td>步驟 {{ step.step_number }}</td>
+              <td>
+                <img src="{{ url_for('static', filename='icons/step' ~ step.step_number ~ '.png') }}"
+                     onerror="this.src='https://via.placeholder.com/48?text=N/A'" class="step-icon">
+              </td>
+              <td>{{ step.name }}</td>
+              <td>
+                {% if step.step_number == 6 %}
+                  <div class="mb-1">
+                    <label class="form-label small">訂單取得</label>
+                    <input type="datetime-local" name="order_received_at_6"
+                           value="{{ step.order_received_at|default('', true) }}" class="form-control">
+                  </div>
+                  <div class="mb-1">
+                    <label class="form-label small">確認施工</label>
+                    <input type="datetime-local" name="construction_date_6"
+                           value="{{ step.construction_date|default('', true) }}" class="form-control">
+                  </div>
+                {% elif step.step_number == 9 %}
+                  {% if step.warranty_start_at %}
+                    <div class="text-muted">保固起算：{{ step.warranty_start_at }}</div>
+                  {% elif step.completed_at %}
+                    <div class="text-muted">自動完成：{{ step.completed_at }}</div>
+                  {% else %}
+                    <span class="text-danger">未完成</span>
+                  {% endif %}
+                {% else %}
+                  <input type="datetime-local" name="completed_at_{{ step.step_number }}"
+                         value="{{ step.completed_at|default('', true) }}" class="form-control">
+                  {% if not step.completed_at %}
+                    <div class="text-danger small">未完成</div>
+                  {% endif %}
+                {% endif %}
+              </td>
+              <td>
+                {% if step.duration is not none %}
+                  {{ step.duration }}
+                {% else %}
+                  <span class="text-muted">未完成</span>
+                {% endif %}
+              </td>
+              <td>
+                {% if step.step_number == 9 and step.warranty_expire_at %}
+                  保固至 {{ step.warranty_expire_at }}
+                {% elif step.cumulative is not none %}
+                  {{ step.cumulative }}
+                {% else %}
+                  <span class="text-muted">未完成</span>
+                {% endif %}
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <button type="submit" class="btn btn-primary">儲存所有更新</button>
+      <a href="/admin" class="btn btn-secondary">回後台</a>
+    </form>
+  </div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>儀表板</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">工程進度系統</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        {% if session.role == 'customer' %}
+          <li class="nav-item"><a class="nav-link" href="/dashboard">儀表板</a></li>
+        {% elif session.role == 'staff' %}
+          <li class="nav-item"><a class="nav-link" href="/admin">後台首頁</a></li>
+          <li class="nav-item"><a class="nav-link" href="/admin/new_project">新增專案</a></li>
+        {% endif %}
+        <li class="nav-item"><a class="nav-link" href="/logout">登出</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-5">
+  <h2 class="mb-4">歡迎，{{ user }}</h2>
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">您的專案列表</h4>
+      {% if projects %}
+        <ul class="list-group">
+          {% for project in projects %}
+            <li class="list-group-item">
+              <a href="/project/{{ project.id }}">
+                <strong>{{ project.title }}</strong>
+              </a><br>
+              顧客名稱：{{ project.client_name or '（未填）' }}<br>
+              安裝地址：{{ project.install_address or '（未填）' }}
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="text-muted">尚未有授權的專案</p>
+      {% endif %}
+    </div>
+  </div>
+  <a href="/logout" class="btn btn-secondary mt-4">登出</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

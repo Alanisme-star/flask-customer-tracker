@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>指派使用者可查看專案</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container mt-5">
+  <h2 class="mb-4">指派使用者可查看專案</h2>
+
+  <form method="GET" class="mb-4">
+    <div class="row">
+      <div class="col-md-6">
+        <select name="phone" class="form-select" required>
+          <option value="">請選擇使用者帳號</option>
+          {% for user in user_list %}
+            <option value="{{ user.phone }}" {% if user.phone == selected_phone %}selected{% endif %}>
+              {{ user.name or user.phone }}（{{ "顧客" if user.role == "customer" else "業務" }})
+            </option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-md-2">
+        <button type="submit" class="btn btn-primary">查詢</button>
+      </div>
+    </div>
+  </form>
+
+  {% if selected_phone %}
+    <form method="POST">
+      <input type="hidden" name="phone" value="{{ selected_phone }}">
+      <p>請勾選要指派的專案：</p>
+      <div class="form-check">
+        {% for project in project_list %}
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="projects" value="{{ project.id }}"
+                   id="project{{ project.id }}" {% if project.id in current_project_ids %}checked{% endif %}>
+            <label class="form-check-label" for="project{{ project.id }}">
+              {{ project.title }}
+            </label>
+          </div>
+        {% endfor %}
+      </div>
+      <button type="submit" class="btn btn-success mt-3">儲存設定</button>
+    </form>
+  {% endif %}
+
+  <!-- ✅ 返回按鈕 -->
+  <div class="mt-4">
+    <a href="/admin" class="btn btn-secondary">返回</a>
+  </div>
+</body>
+</html>

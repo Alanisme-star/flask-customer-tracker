@@ -1,0 +1,10 @@
+{
+  "apiKey": "AIzaSyDUrPGncqjPYa9cAyXICqOE3eODdWvxeps",
+  "authDomain": "customer-tracker-v2.firebaseapp.com",
+  "projectId": "customer-tracker-v2",
+  "storageBucket": "customer-tracker-v2.appspot.com",
+  "messagingSenderId": "361990341149",
+  "appId": "1:361990341149:web:650064eacb54af66713cf4",
+  "measurementId": "G-JKD04DZJGD",
+  "databaseURL": "https://customer-tracker-v2.firebaseio.com"
+}
