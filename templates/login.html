@@ -21,18 +21,20 @@
       display: flex;
       align-items: flex-start;
       justify-content: center;
-      padding-top: 20px; /* ✅ 上移表單 */
+      padding-top: 10px; /* ✅ 再往上移 */
     }
 
     .login-wrapper {
       background: rgba(0, 0, 0, 0.7);
-      padding: 1.5rem; /* ✅ 縮小內邊距 */
+      padding: 1rem; /* ✅ 再縮小內邊距 */
       border-radius: 1rem;
       box-shadow: 0 0 20px rgba(0, 255, 153, 0.5);
-      max-width: 320px; /* ✅ 限制最大寬度 */
+      max-width: 300px; /* ✅ 再小一點 */
     }
 
     .card-title {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
       color: #00ffcc;
     }
 
@@ -40,6 +42,8 @@
       background-color: rgba(255, 255, 255, 0.1);
       color: #fff;
       border: 1px solid #00cc99;
+      font-size: 0.9rem;
+      padding: 0.4rem 0.6rem;
     }
 
     .form-control::placeholder {
@@ -49,18 +53,29 @@
     .btn-primary {
       background-color: #00cc99;
       border: none;
+      font-size: 0.95rem;
+      padding: 0.4rem;
     }
 
     .btn-primary:hover {
       background-color: #00e6aa;
     }
+
+    .form-label {
+      font-size: 0.85rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .mb-3 {
+      margin-bottom: 0.8rem !important;
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="col-md-4 mx-auto" style="max-width: 350px;">
+    <div class="col-md-4 mx-auto" style="max-width: 320px;">
       <div class="login-wrapper">
-        <h3 class="card-title text-center mb-4">登入</h3>
+        <h3 class="card-title text-center">登入</h3>
 
         {% if error %}
         <div class="alert alert-danger" role="alert">
