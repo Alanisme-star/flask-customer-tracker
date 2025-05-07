@@ -10,19 +10,9 @@
       padding: 0;
       height: 100%;
       font-family: 'Poppins', sans-serif;
-      background-color: #dceff0;  /* 與背景圖相近的淺藍綠色 */
-      overflow: hidden;
+      background: url('{{ url_for("static", filename="img/tech_ev_bg.jpg") }}') no-repeat center bottom;
+      background-size: cover;
       position: relative;
-    }
-
-    .bg-img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;  /* 不裁切圖像 */
-      z-index: -2;
     }
 
     .logo {
@@ -44,14 +34,14 @@
     }
 
     .login-card {
-      background: rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(6px);
-      padding: 1rem;
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(5px);
+      padding: 1.2rem;
       border-radius: 1rem;
       box-shadow: 0 0 12px rgba(0, 255, 153, 0.4);
       color: #fff;
       width: 100%;
-      max-width: 300px;
+      max-width: 320px;
     }
 
     .form-control {
@@ -81,9 +71,6 @@
   </style>
 </head>
 <body>
-  <!-- 背景圖 -->
-  <img class="bg-img" src="{{ url_for('static', filename='img/tech_ev_bg.jpg') }}" alt="背景圖">
-
   <!-- 公司 LOGO -->
   <img class="logo" src="{{ url_for('static', filename='img/logo.png') }}" alt="公司LOGO">
 
