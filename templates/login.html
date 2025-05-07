@@ -26,11 +26,18 @@
     .login-container {
       min-height: 100vh;
       display: flex;
-      align-items: center; /* 置中顯示 */
+      align-items: center;
       justify-content: center;
       padding: 1rem;
       position: relative;
       z-index: 1;
+    }
+
+    @media (max-width: 767px) {
+      .login-container {
+        align-items: flex-start;
+        margin-top: 60px;
+      }
     }
 
     .login-card {
