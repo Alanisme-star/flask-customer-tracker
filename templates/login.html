@@ -19,17 +19,17 @@
     .container {
       min-height: 100vh;
       display: flex;
-      align-items: flex-start; /* 從上方開始對齊 */
+      align-items: flex-start;
       justify-content: center;
-      padding-top: 80px; /* 向下推一點距離 */
+      padding-top: 20px; /* ✅ 上移表單 */
     }
-
 
     .login-wrapper {
       background: rgba(0, 0, 0, 0.7);
-      padding: 2rem;
+      padding: 1.5rem; /* ✅ 縮小內邊距 */
       border-radius: 1rem;
       box-shadow: 0 0 20px rgba(0, 255, 153, 0.5);
+      max-width: 320px; /* ✅ 限制最大寬度 */
     }
 
     .card-title {
@@ -58,7 +58,7 @@
 </head>
 <body>
   <div class="container">
-    <div class="col-md-4">
+    <div class="col-md-4 mx-auto" style="max-width: 350px;">
       <div class="login-wrapper">
         <h3 class="card-title text-center mb-4">登入</h3>
 
