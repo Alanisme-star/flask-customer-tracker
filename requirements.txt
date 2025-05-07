@@ -12,4 +12,5 @@ googleapis-common-protos==1.69.2
 requests==2.32.3
 python-dotenv==1.0.1
 pyrebase4==4.5.0
+requests==2.27.1
 
