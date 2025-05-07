@@ -540,8 +540,6 @@ def project_detail(project_id):
     steps = []
     for doc in step_docs:
         data = doc.to_dict()
-        if not data.get("completed_at"):  # 改成只忽略沒完成的
-            continue
         steps.append({
             "step_number": data["step_number"],
             "name": data["name"],
@@ -549,6 +547,7 @@ def project_detail(project_id):
             "order_received_at": data.get("order_received_at"),
             "construction_date": data.get("construction_date")
         })
+
 
 
     return render_template("project_detail.html", project_title=project.get("title"), steps=steps)
