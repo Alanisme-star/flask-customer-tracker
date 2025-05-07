@@ -21,7 +21,7 @@
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      padding-top: 150px; /* ← 桌機畫面：保持不變 */
+      padding-top: 150px;
     }
 
     .login-wrapper {
@@ -29,7 +29,7 @@
       padding: 0.4rem 0.6rem;
       border-radius: 1rem;
       box-shadow: 0 0 20px rgba(0, 255, 153, 0.5);
-      width: 140px; /* ← 桌機畫面：保持不變 */
+      width: 140px;
     }
 
     .card-title {
@@ -74,30 +74,30 @@
     /* 手機畫面專用調整（不影響桌機） */
     @media (max-width: 480px) {
       .container {
-        padding-top: 300px; /* ↓↓↓ 登入視窗往下對齊車頂上方 */
+        padding-top: 340px;
       }
 
       .login-wrapper {
-        width: 75vw;
-        padding: 0.8rem 1rem;
+        width: 85vw;
+        padding: 1rem 1.2rem;
       }
 
       .card-title {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
       }
 
       .form-label,
       .form-control,
       .btn-primary {
-        font-size: 0.95rem;
+        font-size: 1.05rem;
       }
 
       .form-control {
-        padding: 0.4rem 0.6rem;
+        padding: 0.5rem 0.7rem;
       }
 
       .btn-primary {
-        padding: 0.4rem;
+        padding: 0.5rem;
       }
     }
   </style>
