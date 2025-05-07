@@ -12,25 +12,25 @@
       background-attachment: fixed;
       font-family: 'Poppins', sans-serif;
       color: #fff;
-      min-height: 100vh;
-      overflow-y: auto;
+      height: 100vh;
+      overflow: hidden;
     }
 
     .container {
-      min-height: 100vh;
+      height: 100vh;
       display: flex;
-      align-items: flex-start;
       justify-content: center;
-      padding-top: 40px; /* 調高上方距離 */
+      align-items: flex-start;
+      padding-top: 10px; /* 向上移動整體區塊 */
     }
 
     .login-wrapper {
       background: rgba(0, 0, 0, 0.7);
-      padding: 0.6rem;
-      margin-top: 10px; /* 微調位置 */
+      padding: 0.6rem 1rem;
+      margin-top: 5px; /* 再微調往上 */
       border-radius: 1rem;
       box-shadow: 0 0 20px rgba(0, 255, 153, 0.5);
-      max-width: 270px;
+      width: 270px;
     }
 
     .card-title {
@@ -75,28 +75,26 @@
 </head>
 <body>
   <div class="container">
-    <div class="col-md-4 mx-auto" style="max-width: 290px;">
-      <div class="login-wrapper">
-        <h3 class="card-title">登入</h3>
+    <div class="login-wrapper">
+      <h3 class="card-title">登入</h3>
 
-        {% if error %}
-        <div class="alert alert-danger" role="alert">
-          {{ error }}
-        </div>
-        {% endif %}
-
-        <form action="/login" method="POST">
-          <div class="mb-3">
-            <label for="phone" class="form-label">手機號碼</label>
-            <input type="text" name="phone" class="form-control" required placeholder="請輸入手機號碼">
-          </div>
-          <div class="mb-3">
-            <label for="password" class="form-label">密碼</label>
-            <input type="password" name="password" class="form-control" required placeholder="請輸入密碼">
-          </div>
-          <button type="submit" class="btn btn-primary w-100">登入</button>
-        </form>
+      {% if error %}
+      <div class="alert alert-danger" role="alert">
+        {{ error }}
       </div>
+      {% endif %}
+
+      <form action="/login" method="POST">
+        <div class="mb-3">
+          <label for="phone" class="form-label">手機號碼</label>
+          <input type="text" name="phone" class="form-control" required placeholder="請輸入手機號碼">
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">密碼</label>
+          <input type="password" name="password" class="form-control" required placeholder="請輸入密碼">
+        </div>
+        <button type="submit" class="btn btn-primary w-100">登入</button>
+      </form>
     </div>
   </div>
 </body>
