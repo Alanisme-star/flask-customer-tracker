@@ -10,6 +10,7 @@
       padding: 0;
       height: 100%;
       font-family: 'Poppins', sans-serif;
+      background-color: #dceff0;  /* 與背景圖相近的淺藍綠色 */
       overflow: hidden;
       position: relative;
     }
@@ -20,7 +21,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;  /* 不裁切圖像 */
       z-index: -2;
     }
 
@@ -37,7 +38,7 @@
       display: flex;
       align-items: flex-end;
       justify-content: center;
-      padding: 0 1rem 10vh;
+      padding: 0 1rem 12vh;
       position: relative;
       z-index: 1;
     }
@@ -45,12 +46,12 @@
     .login-card {
       background: rgba(0, 0, 0, 0.5);
       backdrop-filter: blur(6px);
-      padding: 1.5rem;
+      padding: 1rem;
       border-radius: 1rem;
       box-shadow: 0 0 12px rgba(0, 255, 153, 0.4);
       color: #fff;
       width: 100%;
-      max-width: 320px;
+      max-width: 300px;
     }
 
     .form-control {
@@ -75,7 +76,7 @@
     .card-title {
       color: #00ffcc;
       text-align: center;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1rem;
     }
   </style>
 </head>
@@ -83,10 +84,10 @@
   <!-- 背景圖 -->
   <img class="bg-img" src="{{ url_for('static', filename='img/tech_ev_bg.jpg') }}" alt="背景圖">
 
-  <!-- 公司 LOGO（需去背透明 PNG） -->
+  <!-- 公司 LOGO -->
   <img class="logo" src="{{ url_for('static', filename='img/logo.png') }}" alt="公司LOGO">
 
-  <!-- 登入框 -->
+  <!-- 登入區塊 -->
   <div class="login-container">
     <div class="login-card">
       <h3 class="card-title">登入</h3>
