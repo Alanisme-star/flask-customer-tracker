@@ -1,102 +1,89 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-Hant">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>登入</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
+    body, html {
       height: 100%;
-      font-family: 'Poppins', sans-serif;
-      background: url('{{ url_for("static", filename="img/tech_ev_bg.jpg") }}') no-repeat center 70%;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: url('/static/bg.jpg') no-repeat center center fixed;
       background-size: cover;
-      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .logo {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      width: 120px;
-      z-index: 2;
+      margin-top: 30px;
+      width: 160px;
+      max-width: 40%;
     }
 
     .login-container {
-      min-height: 100vh;
-      display: flex;
-      align-items: center; /* 置中顯示 */
-      justify-content: center;
-      padding: 1rem;
-      position: relative;
-      z-index: 1;
+      margin-top: 30px;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 30px 20px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px #0ff;
+      width: 90%;
+      max-width: 400px;
+      color: white;
     }
 
-    .login-card {
-      background: rgba(0, 0, 0, 0.55);
-      backdrop-filter: blur(5px);
-      padding: 1.2rem;
-      border-radius: 1rem;
-      box-shadow: 0 0 12px rgba(0, 255, 153, 0.4);
-      color: #fff;
-      width: 100%;
-      max-width: 320px;
-    }
-
-    .form-control {
-      background-color: rgba(255, 255, 255, 0.1);
-      border: 1px solid #00cc99;
-      color: #fff;
-    }
-
-    .form-control::placeholder {
-      color: #ccc;
-    }
-
-    .btn-primary {
-      background-color: #00cc99;
-      border: none;
-    }
-
-    .btn-primary:hover {
-      background-color: #00e6aa;
-    }
-
-    .card-title {
-      color: #00ffcc;
+    h2 {
       text-align: center;
-      margin-bottom: 1rem;
+      color: #00f7d1;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+    }
+
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #00f7d1;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 20px;
+      background-color: #00d8a7;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #00c39d;
     }
   </style>
 </head>
 <body>
-  <!-- 公司 LOGO -->
-  <img class="logo" src="{{ url_for('static', filename='img/logo.png') }}" alt="公司LOGO">
+  <img src="/static/logo.png" alt="Logo" class="logo">
 
-  <!-- 登入區塊 -->
   <div class="login-container">
-    <div class="login-card">
-      <h3 class="card-title">登入</h3>
+    <h2>登入</h2>
+    <form action="/login" method="post">
+      <label for="phone">手機號碼</label>
+      <input type="text" id="phone" name="phone" placeholder="請輸入手機號碼" required>
 
-      {% if error %}
-      <div class="alert alert-danger" role="alert">
-        {{ error }}
-      </div>
-      {% endif %}
+      <label for="password">密碼</label>
+      <input type="password" id="password" name="password" placeholder="請輸入密碼" required>
 
-      <form action="/login" method="POST">
-        <div class="mb-3">
-          <label for="phone" class="form-label">手機號碼</label>
-          <input type="text" name="phone" class="form-control" required placeholder="請輸入手機號碼">
-        </div>
-        <div class="mb-3">
-          <label for="password" class="form-label">密碼</label>
-          <input type="password" name="password" class="form-control" required placeholder="請輸入密碼">
-        </div>
-        <button type="submit" class="btn btn-primary w-100">登入</button>
-      </form>
-    </div>
+      <button type="submit">登入</button>
+    </form>
   </div>
 </body>
 </html>
