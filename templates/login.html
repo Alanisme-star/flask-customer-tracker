@@ -20,21 +20,31 @@
       left: 0;
       width: 100%;
       height: 100%;
-      object-fit: contain;
-      z-index: -1;
+      object-fit: cover;
+      z-index: -2;
+    }
+
+    .logo {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 120px;
+      z-index: 2;
     }
 
     .login-container {
       min-height: 100vh;
       display: flex;
-      align-items: flex-end;        /* 將登入框垂直下移 */
+      align-items: flex-end;
       justify-content: center;
-      padding: 0 1rem 10vh;         /* 左右 1rem、底部 10vh 的留白 */
+      padding: 0 1rem 10vh;
+      position: relative;
+      z-index: 1;
     }
 
     .login-card {
-      background: rgba(0, 0, 0, 0.5);    /* 更透一點 */
-      backdrop-filter: blur(6px);        /* 模糊背景加強科技感 */
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(6px);
       padding: 1.5rem;
       border-radius: 1rem;
       box-shadow: 0 0 12px rgba(0, 255, 153, 0.4);
@@ -70,9 +80,13 @@
   </style>
 </head>
 <body>
-  <!-- 背景圖片 -->
+  <!-- 背景圖 -->
   <img class="bg-img" src="{{ url_for('static', filename='img/tech_ev_bg.jpg') }}" alt="背景圖">
 
+  <!-- 公司 LOGO（需去背透明 PNG） -->
+  <img class="logo" src="{{ url_for('static', filename='img/logo.png') }}" alt="公司LOGO">
+
+  <!-- 登入框 -->
   <div class="login-container">
     <div class="login-card">
       <h3 class="card-title">登入</h3>
