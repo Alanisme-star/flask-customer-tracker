@@ -21,7 +21,7 @@
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      padding-top: 150px; /* ← 再往上移 */
+      padding-top: 150px; /* ← 桌機畫面：保持不變 */
     }
 
     .login-wrapper {
@@ -29,7 +29,7 @@
       padding: 0.4rem 0.6rem;
       border-radius: 1rem;
       box-shadow: 0 0 20px rgba(0, 255, 153, 0.5);
-      width: 140px; /* ← 繼續縮小 */
+      width: 140px; /* ← 桌機畫面：保持不變 */
     }
 
     .card-title {
@@ -70,31 +70,36 @@
     .mb-3 {
       margin-bottom: 0.4rem !important;
     }
-@media (max-width: 480px) {
-  .login-wrapper {
-    width: 75vw;
-    padding: 0.6rem 0.8rem;
-  }
 
-  .card-title {
-    font-size: 1rem;
-  }
+    /* 手機畫面專用調整（不影響桌機） */
+    @media (max-width: 480px) {
+      .container {
+        padding-top: 300px; /* ↓↓↓ 登入視窗往下對齊車頂上方 */
+      }
 
-  .form-label {
-    font-size: 0.85rem;
-  }
+      .login-wrapper {
+        width: 75vw;
+        padding: 0.8rem 1rem;
+      }
 
-  .form-control {
-    font-size: 0.85rem;
-    padding: 0.35rem 0.5rem;
-  }
+      .card-title {
+        font-size: 1.1rem;
+      }
 
-  .btn-primary {
-    font-size: 0.9rem;
-    padding: 0.35rem;
-  }
-}
+      .form-label,
+      .form-control,
+      .btn-primary {
+        font-size: 0.95rem;
+      }
 
+      .form-control {
+        padding: 0.4rem 0.6rem;
+      }
+
+      .btn-primary {
+        padding: 0.4rem;
+      }
+    }
   </style>
 </head>
 <body>
