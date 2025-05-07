@@ -11,4 +11,3 @@ google-api-core==2.24.2
 googleapis-common-protos==1.69.2
 python-dotenv==1.0.1
 git+https://github.com/nhorvath/Pyrebase4.git
-
