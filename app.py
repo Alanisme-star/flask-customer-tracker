@@ -305,12 +305,11 @@ def login():
     password = request.form["password"]
     print(f"⚡ 嘗試登入 - 手機號碼: {phone}, 密碼: {password}")
 
-    user_docs = db.collection("users").where("phone", "==", phone).limit(1).stream()
+    user_docs = db.collection("users").where("phone", "==", phone).limit(1).get()
     user_data = None
-    for doc in user_docs:
-        user_data = doc.to_dict()
+    if user_docs:
+        user_data = user_docs[0].to_dict()
         print(f"✅ 找到使用者資料: {user_data}")
-        break
 
     if not user_data:
         print("❌ 查無此帳號")
