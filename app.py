@@ -303,20 +303,28 @@ def index():
 def login():
     phone = request.form["phone"]
     password = request.form["password"]
+    print(f"⚡ 嘗試登入 - 手機號碼: {phone}, 密碼: {password}")
 
     user_docs = db.collection("users").where("phone", "==", phone).stream()
     user_data = None
     for doc in user_docs:
         user_data = doc.to_dict()
+        print(f"✅ 找到使用者資料: {user_data}")
         break
 
-    if not user_data or user_data.get("password") != password:
+    if not user_data:
+        print("❌ 查無此帳號")
         return render_template("login.html", error="登入失敗，請確認手機號碼與密碼")
 
+    if user_data.get("password") != password:
+        print(f"❌ 密碼不正確 (輸入: {password}, 正確: {user_data.get('password')})")
+        return render_template("login.html", error="登入失敗，請確認手機號碼與密碼")
 
+    print("✅ 密碼驗證成功，設定 session 中…")
     session["user"] = phone
     session["role"] = user_data.get("role", "customer")
 
+    print(f"🎯 使用者角色為：{session['role']}")
     if session["role"] == "customer":
         return redirect("/dashboard")
     elif session["role"] == "staff":
@@ -324,6 +332,7 @@ def login():
     elif session["role"] == "sales":
         return redirect("/sales_dashboard")
     else:
+        print("❌ 無法識別的角色")
         return render_template("login.html", error="未知身份，無法登入")
 
 @app.route("/sales_dashboard")
