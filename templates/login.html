@@ -10,7 +10,7 @@
       padding: 0;
       height: 100%;
       font-family: 'Poppins', sans-serif;
-      background: url('{{ url_for("static", filename="img/tech_ev_bg.jpg") }}') no-repeat center 70%;
+      background: url('{{ url_for("static", filename="img/tech_ev_bg.jpg") }}') no-repeat center 80%; /* 修改此處 */
       background-size: cover;
       position: relative;
     }
@@ -26,9 +26,9 @@
     .login-container {
       min-height: 100vh;
       display: flex;
-      align-items: center; /* 置中顯示 */
+      align-items: flex-start; /* 將置中改為從上方開始 */
       justify-content: center;
-      padding: 1rem;
+      padding-top: 7.5rem; /* 增加上方距離，數值可自行調整 */
       position: relative;
       z-index: 1;
     }
@@ -71,20 +71,15 @@
   </style>
 </head>
 <body>
-  <!-- 公司 LOGO -->
   <img class="logo" src="{{ url_for('static', filename='img/logo.png') }}" alt="公司LOGO">
-
-  <!-- 登入區塊 -->
   <div class="login-container">
     <div class="login-card">
       <h3 class="card-title">登入</h3>
-
       {% if error %}
       <div class="alert alert-danger" role="alert">
         {{ error }}
       </div>
       {% endif %}
-
       <form action="/login" method="POST">
         <div class="mb-3">
           <label for="phone" class="form-label">手機號碼</label>
