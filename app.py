@@ -305,7 +305,7 @@ def login():
     password = request.form["password"]
     print(f"⚡ 嘗試登入 - 手機號碼: {phone}, 密碼: {password}")
 
-    user_docs = db.collection("users").where("phone", "==", phone).stream()
+    user_docs = db.collection("users").where("phone", "==", phone).limit(1).stream()
     user_data = None
     for doc in user_docs:
         user_data = doc.to_dict()
